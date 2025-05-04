@@ -33,7 +33,33 @@ Click on view table option to see data loaded.
 ## PostgreSQL:
 •	Download database backup file from link provided, it is shell script, before running it, give user execute permission and then execute bash file to get database created with tables:
 * Chmod u_x postgres-setup.sh
-* ./postgres-setup.sh   # running bash script 
+* ./postgres-setup.sh   # running bash script
+* Check the max number of connections allowed in postgreySQL: Show max_connections;
+*	Create user using :	Create user backup_operator;
+*	Create role backup:	Create role backup;
+*	Grant permissions to backup_operator for database:
+* *	GRANT CONNECT ON DATABASE tolldata to backup;
+* *	GRANT SELECT ON ALL TABLES IN SCHEMA toll to backup;
+* Grant bakup role to backup_operator user:
+* GRANT backup to backup_operator;
+* ![grant] (https://github.com/Dipapatil/Data-Restore-and-Optimization-on-IBM-DB2-Cloud/blob/main/grant-privs-to-role.png)
+
+
+## MySQL
+* To restore database in mysql, first create database and then use source command to restore .sql file.
+* Create database billing;
+* Source billingbackup.sql
+* Created shell script file and save as .sh file , below is code of shell script file, 1st line creates backup file, then created todays date variable with date value used for folder name, then made folder using mkdir with todays date in path /tmp/mysqldumps/ , but first created this directory – mysqldumps.
+* Finaly, I moved backup file to today’s date folder.
+*	give shell file execute permission as :  chmod u+x mybackup.sh
+*	execute is by entering command : ./mybackup.sh
+*	now if we check by going into to path -/tmp/mysqldumps/ backup sql file available in today’s date folder.
+![bash shell script](https://github.com/Dipapatil/Data-Restore-and-Optimization-on-IBM-DB2-Cloud/blob/main/bash-script.png)
+
+[Link to Bash shell script](https://github.com/Dipapatil/Data-Restore-and-Optimization-on-IBM-DB2-Cloud/blob/main/mybackup.sh)
+
+
+
 
 
 
